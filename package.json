@@ -1,0 +1,91 @@
+{
+  "name": "vscode-lua-fmt-ext",
+  "displayName": "lua-fmt-ext - lua中文格式化工具",
+  "description": "modified lua-fmt with extended identifiers",
+  "version": "0.0.1",
+  "publisher": "bilabila",
+  "author": "bilabila",
+  "homepage": "https://marketplace.visualstudio.com/items?itemName=bilabila.vscode-lua-fmt-ext",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkkcc/vscode-lua-fmt-ext"
+  },
+  "icon": "icon.png",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkkcc/vscode-lua-fmt-ext/issues"
+  },
+  "engines": {
+    "vscode": "^1.17.0"
+  },
+  "keywords": [
+    "lua fomatter",
+    "lua中文格式化"
+  ],
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onLanguage:lua"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "lua-fmt-ext - lua中文格式化工具",
+      "properties": {
+        "luaFmtExt.lineWidth": {
+          "type": "integer",
+          "default": 120,
+          "description": "Maximum length of a line before it will be wrapped",
+          "scope": "resource"
+        },
+        "luaFmtExt.indentCount": {
+          "type": "integer",
+          "default": 4,
+          "description": "Number of characters to indent",
+          "scope": "resource"
+        },
+        "luaFmtExt.linebreakMultipleAssignments": {
+          "type": "boolean",
+          "default": false,
+          "description": "If true, will wrap on multiple assignments",
+          "scope": "resource"
+        },
+        "luaFmtExt.quotemark": {
+          "type": "string",
+          "enum": [
+            "single",
+            "double"
+          ],
+          "default": "single",
+          "description": "use single or double quotes",
+          "scope": "resource"
+        },
+        "luaFmtExt.useTabs": {
+          "type": "boolean",
+          "default": false,
+          "description": "Indent lines with tabs",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "yarn run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.0.4",
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.1",
+    "vscode": "^1.1.34"
+  },
+  "dependencies": {
+    "lua-fmt-ext": "^3.0.5"
+  }
+}
