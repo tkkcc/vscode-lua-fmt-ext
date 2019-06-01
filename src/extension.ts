@@ -1,26 +1,26 @@
 import {
   languages,
-  ExtensionContext,
-  FormattingOptions,
   TextDocument,
   TextEdit,
   Range,
-  DocumentFormattingEditProvider
+  DocumentFormattingEditProvider,
+  workspace,
+  Uri
 } from 'vscode'
-import { formatText, UserOptions } from 'lua-fmt-ext'
-class LuaFormatProvider implements DocumentFormattingEditProvider {
-  public provideDocumentFormattingEdits(
-    document: TextDocument,
-    options: FormattingOptions
-  ): TextEdit[] {
+import { formatText } from 'lua-fmt-ext'
+function getConfig() {
+  return workspace.getConfiguration('luaFmtExt') as any
+}
+class FormatProvider implements DocumentFormattingEditProvider {
+  public provideDocumentFormattingEdits(document: TextDocument): TextEdit[] {
     return [
       TextEdit.replace(
         document.validateRange(new Range(0, 0, Infinity, Infinity)),
-        formatText(document.getText(), options as UserOptions)
+        formatText(document.getText(), getConfig())
       )
     ]
   }
 }
-export function activate(context: ExtensionContext) {
-  languages.registerDocumentFormattingEditProvider('lua', new LuaFormatProvider())
+export function activate() {
+  languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'lua' }, new FormatProvider())
 }
