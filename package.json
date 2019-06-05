@@ -2,7 +2,7 @@
   "name": "vscode-lua-fmt-ext",
   "displayName": "lua-fmt-ext - lua中文格式化工具",
   "description": "modified lua-fmt with extended identifiers",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "bilabila",
   "author": "bilabila",
   "homepage": "https://marketplace.visualstudio.com/items?itemName=bilabila.vscode-lua-fmt-ext",
