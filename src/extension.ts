@@ -5,7 +5,6 @@ import {
   Range,
   DocumentFormattingEditProvider,
   workspace,
-  Uri
 } from 'vscode'
 import { formatText } from 'lua-fmt-ext'
 function getConfig() {
